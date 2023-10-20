@@ -1,0 +1,20 @@
+apiVersion: build.OpenShift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app.kubernetes.io/name: sample-jenkins # your application name
+  name: sample-jenkins # your application name
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: samplejenkins # add yourimage
+  source:
+    # Expect a local directory to be streamed to OpenShift as a build source
+    type: Binary
+    binary: {}
+  strategy:
+    type: Docker
+    dockerStrategy:
+      # Find the image build instructions in./Dockerfile
+      dockerfilePath: Dockerfile
